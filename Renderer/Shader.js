@@ -1,3 +1,7 @@
+//TODO : 
+//Parse shader src to store uniforms
+//get attribute locations
+
 JSENGINE.Shader = function(options)
 {
 	if(!options.vShaderSrc)
@@ -20,6 +24,21 @@ JSENGINE.Shader = function(options)
 
 	this._programID;
 
+	this._attributes = [];
+
+	this._uniforms = [];
+
+	/*
+	attribLocations.push({
+		name : "string",
+		location : loc`
+	})
+	*/
+	
+	this._attribLocations = [];
+
+	this._uniformLocations = [];
+
 }
 
 function checkCompileStatus(id)
@@ -30,6 +49,12 @@ function checkCompileStatus(id)
 		console.log(gl.getShaderInfoLog(id));
 		throw ({'Shader : failed to compile shader'});
 	}
+}
+
+
+function getShaderAttribLocations()
+{
+	//TODO
 }
 
 JSENGINE.Shader.prototype.createShaderProgram = function()
@@ -49,6 +74,8 @@ JSENGINE.Shader.prototype.createShaderProgram = function()
 	gl.attachShader(this._programID, this._vShaderID);
 	gl.attachShader(this._programID, this._fShaderID);
 
+	getShaderAttribLocations();
+
 	gl.linkProgram(this._programID)
 }
 
@@ -56,4 +83,13 @@ JSENGINE.Shader.prototype.use = function()
 {
 	var gl = this._context._gl;
 	gl.useProggram(this._programID);
+}
+
+JSENGINE.Shader.prototype.getAttributeLocation = function(string)
+{
+	for(var i = 0;i<this._attribLocations.length ; i++){
+		if(this._attributes[i].name===string)
+			return this._attribLocations[i].location;
+	}
+	return undefined;
 }
