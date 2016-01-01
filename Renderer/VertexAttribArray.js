@@ -1,0 +1,4 @@
+JSENGINE.VertexAttribArray = functions(options)
+{
+	
+}
