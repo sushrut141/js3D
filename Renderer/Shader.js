@@ -2,6 +2,11 @@
 //Parse shader src to store uniforms
 //get attribute locations
 
+/*
+Shadder program must not be in use 
+before passing it to the Draw Command list
+*/
+
 JSENGINE.Shader = function(options)
 {
 	if(!options.vShaderSrc)
@@ -34,7 +39,7 @@ JSENGINE.Shader = function(options)
 		location : loc`
 	})
 	*/
-	
+
 	this._attribLocations = [];
 
 	this._uniformLocations = [];
@@ -74,6 +79,7 @@ JSENGINE.Shader.prototype.createShaderProgram = function()
 	gl.attachShader(this._programID, this._vShaderID);
 	gl.attachShader(this._programID, this._fShaderID);
 
+	//TODO
 	getShaderAttribLocations();
 
 	gl.linkProgram(this._programID)
@@ -82,7 +88,7 @@ JSENGINE.Shader.prototype.createShaderProgram = function()
 JSENGINE.Shader.prototype.use = function()
 {
 	var gl = this._context._gl;
-	gl.useProggram(this._programID);
+	gl.useProgram(this._programID);
 }
 
 JSENGINE.Shader.prototype.getAttributeLocation = function(string)
