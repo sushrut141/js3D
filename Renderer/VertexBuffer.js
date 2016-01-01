@@ -35,6 +35,17 @@ JSENGINE.VertexBuffer.prototype.create = function()
 	}	
 }
 
+JSENGINE.VertexBuffer.createIndexBuffer = function()
+{
+	var gl = this._context._gl;
+	if(!this._created)
+	{
+		this._bufferID = gl.createBuffer();
+		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this._bufferID);
+		gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this._data),gl.STATIC_DRAW);
+	}
+}
+
 JSENGINE.VertexBuuffer.prototype.bind = function()
 {
 	var gl = this._contex._gl;
