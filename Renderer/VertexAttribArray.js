@@ -13,7 +13,7 @@ options = {
 
 */
 
-JSENGINE.VertexAttribArray = function(options)
+JSENGINE.VertexArray = function(options)
 {
 	if(!options.buffer)
 		throw ({'VertexAttribarray vertex buffer is required'});
@@ -47,7 +47,7 @@ JSENGINE.VertexAttribArray = function(options)
 }
 
 
-JSENGINE.VertexAttribArray.prototype.enable = function()
+JSENGINE.VertexArray.prototype.enable = function()
 {
 	var gl = this._context._gl;
 	var num = this._components;
@@ -62,7 +62,7 @@ JSENGINE.VertexAttribArray.prototype.enable = function()
 	this._vbo.unbind();
 }
 
-JSENGINE.VertexAttribArray.prototype.disable = function()
+JSENGINE.VertexArray.prototype.disable = function()
 {
 	var gl = this._conntext._gl;
 	gl.disablevertexAttribbbarray(this._location);
