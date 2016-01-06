@@ -13,7 +13,6 @@ JSENGINE.Context = function(options)
 	this._width = this._camvas.width;
 
 	this._height = this._canvas.height;
-
 }
 
 

@@ -6,7 +6,7 @@ options = {
 	context : gl context
 	mode : gl.TRIANGLES,gl.POINTS...,
 	program : shader program
-	array : VAO
+	array : VAO,
 	indices : element array buffer id,
 	offset : offset innto array
 	count : no of vertices to render
@@ -69,7 +69,7 @@ JSENGINE.DrawCommand.prototype.execute = function()
 	if(indices)
 		gl.drawElements(this._mode,this._count,gl.UNSIGNED_INT,this._offset);
 	else{
-		g.drawArrays(this._mode, this.-offset, this._count);
+		gl.drawArrays(this._mode, this._offset, this._count);
 	}
 
 }
